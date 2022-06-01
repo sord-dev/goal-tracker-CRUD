@@ -6,6 +6,9 @@ function Goal(props) {
   const cardStyles = { width: '275px', marginTop: '90px'}
   const {handleUpdate, handleDelete, goalName, goalCatagory, goalDescription} = props
 
+  //todo 
+  //validate text
+
   return (
     <div>
     <Card sx={cardStyles}>

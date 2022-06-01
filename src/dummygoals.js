@@ -13,7 +13,52 @@ const data = [
         goalName: 'code',
         goalCatagory: 'education',
         goalDescription: "learning how to create a Crud App"
+    },
+    {
+        goalName: 'code',
+        goalCatagory: 'education',
+        goalDescription: "learning how to create a Crud App"
+    },
+    {
+        goalName: 'code',
+        goalCatagory: 'education',
+        goalDescription: "learning how to create a Crud App"
+    },
+    {
+        goalName: 'code',
+        goalCatagory: 'education',
+        goalDescription: "learning how to create a Crud App"
+    },
+    {
+        goalName: 'code',
+        goalCatagory: 'education',
+        goalDescription: "learning how to create a Crud App"
+    },
+    {
+        goalName: 'code',
+        goalCatagory: 'education',
+        goalDescription: "learning how to create a Crud App"
+    },
+    {
+        goalName: 'code',
+        goalCatagory: 'education',
+        goalDescription: "learning how to create a Crud App"
+    },
+    {
+        goalName: 'code',
+        goalCatagory: 'education',
+        goalDescription: "learning how to create a Crud App"
+    },
+    {
+        goalName: 'code',
+        goalCatagory: 'education',
+        goalDescription: "learning how to create a Crud App"
+    },
+    {
+        goalName: 'code',
+        goalCatagory: 'education',
+        goalDescription: "learning how to create a Crud App"
     }
 ]
 
-export default data;
+export default data
