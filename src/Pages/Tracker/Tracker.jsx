@@ -22,11 +22,11 @@ function Tracker() {
     <Container maxWidth="xl">
 
 
-      <Grid container spacing={4}>
+      <Grid container sx={{margin: '0', overflow: 'none'}} spacing={4}>
         {data.map((goal, index) => (
           <Grid item>
             <Goal
-              key={index + 1}
+              key={index += 1}
               handleDelete={handleDelete}
               handleUpdate={handleUpdate}
               goalName={goal.goalName}
@@ -38,7 +38,7 @@ function Tracker() {
       </Grid>
 
 
-            <Fab color='primary' sx={{position: 'fixed', bottom: '15px', right: '15px', zIndex:'999', display: ''}} onClick={handleForm}>
+            <Fab color='primary' sx={{position: 'fixed', bottom: '15px', right: '15px', zIndex:'999'}} onClick={handleForm}>
                 <Add></Add>
             </Fab>
 

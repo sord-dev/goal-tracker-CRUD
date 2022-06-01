@@ -1,9 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import About from './Pages/About/About'
 import Tracker from './Pages/Tracker/Tracker'
 import App from './App'
+import { Typography } from '@mui/material'
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -14,7 +16,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
    </Route>
 
    <Route path='*' element={
-     <h1>nothin to see here!</h1>
+     <>
+      <Typography align='center' variant='h1' sx={{marginTop: {xs: '20rem', md: '30rem'}}}>nothin to see here</Typography>
+      <Typography align='center' variant='h4'>I think you may have stubled along a page that doesn't exist, return to home here:</Typography>
+      <Link to='/tracker'><Typography align='center' variant='h5'>Click me c:</Typography></Link>
+     </>
    } />
     
 
