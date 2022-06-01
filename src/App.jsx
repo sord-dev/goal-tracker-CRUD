@@ -10,7 +10,6 @@ function App() {
 
   return (
     <div className="App">
-
       <CssBaseline />
       <AppBar>
         <Toolbar sx={appbarStyles}>
