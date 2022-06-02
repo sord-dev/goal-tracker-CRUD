@@ -19,6 +19,11 @@ import Goal from "./components/Goal";
 import data from "../../dummygoals";
 import { Add } from "@mui/icons-material";
 
+import FirestoreProvider from '../../firebase.js'
+import Action from "./components/Action";
+
+
+
 function Tracker() {
   const [goals, setGoals] = useState([]);
   const [open, setOpen] = useState(false);
@@ -27,12 +32,36 @@ function Tracker() {
   const [goalCatagoryInput, setGoalCatagoryInput] = useState();
   const [goalDescInput, setGoalDescInput] = useState();
 
-  useEffect(() => {
-    setGoals(data);
-  }, []);
+  const handleFormSubmit = async () => {
+    const ans = {
+      name: goalNameInput,
+      cat: goalCatagoryInput,
+      desc: goalDescInput
+    }
 
-  const handleDelete = (e) => {
-    e.target.parentElement.parentElement.parentElement.parentElement.remove();
+    try {
+     await FirestoreProvider.store(ans)
+     console.log('file uploaded succesfully')
+     handleFormClose()
+    } catch (error) {
+      console.log('file uploaded succesfully', error)
+    }
+  }
+
+  useEffect(() => {
+    const goalres = getGoals()
+    goalres.then((doc) => setGoals(doc.docs.map(
+      (goal) => ({...goal.data(), id: goal.id})
+    )))
+  }, [goals]);
+
+  const handleDelete = async (id) => {
+    try {
+      await FirestoreProvider.del(id)
+      console.log('succesfully deleted goal', id)
+    } catch (error) {
+      console.log('you messed up bro ', id, error.code)
+    }
   };
 
   const handleUpdate = () => {
@@ -49,43 +78,33 @@ function Tracker() {
     setOpen(false);
   };
 
-  const handleFormSubmit = (e) => {
-    const ans = {
-      name: goalNameInput,
-      cat: goalCatagoryInput,
-      desc: goalDescInput
-    }
 
-    console.log(ans)
+
+async function getGoals() {
+    const data = await FirestoreProvider.getAll()
+    return data
   }
-
 
   const CATAGORIES = ['Chores','Exercise','Education','Work']
 
   return (
     <Container maxWidth="xl">
       <Grid container spacing={4}>
-        {goals.map((goal, index) => (
+        {goals.map((goal) => (
           <Grid item>
             <Goal
-              key={(index + 1)}
-              handleDelete={handleDelete}
-              handleUpdate={handleUpdate}
-              goalName={goal.goalName}
-              goalCatagory={goal.goalCatagory}
-              goalDescription={goal.goalDescription}
+              key={goal.id}
+              handleDelete={() => handleDelete(goal.id)}
+              handleUpdate={() => handleUpdate(goal.id)}
+              goalName={goal.name}
+              goalCatagory={goal.cat}
+              goalDescription={goal.desc}
             />
           </Grid>
         ))}
       </Grid>
 
-      <Fab
-        color="primary"
-        sx={{ position: "fixed", bottom: "15px", right: "15px", zIndex: "999" }}
-        onClick={handleForm}
-      >
-        <Add></Add>
-      </Fab>
+     <Action handleForm={handleForm} />
 
       <Dialog open={open} onClose={handleFormClose}>
         <DialogTitle>Add Goal</DialogTitle>
