@@ -58,6 +58,16 @@ const data = [
         goalName: 'code',
         goalCatagory: 'education',
         goalDescription: "learning how to create a Crud App"
+    },
+    {
+        goalName: 'workout 7/pw',
+        goalCatagory: 'exercise',
+        goalDescription: "you're so scared of the gym lol"
+    },
+    {
+        goalName: 'workout 7/pw',
+        goalCatagory: 'exercise',
+        goalDescription: "you're so scared of the gym lol"
     }
 ]
 
