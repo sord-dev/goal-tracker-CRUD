@@ -23,6 +23,10 @@ function Tracker() {
   const [goals, setGoals] = useState([]);
   const [open, setOpen] = useState(false);
 
+  const [goalNameInput, setGoalNameInput] = useState();
+  const [goalCatagoryInput, setGoalCatagoryInput] = useState();
+  const [goalDescInput, setGoalDescInput] = useState();
+
   useEffect(() => {
     setGoals(data);
   }, []);
@@ -35,6 +39,8 @@ function Tracker() {
     console.log("update");
   };
 
+
+  //form 
   const handleForm = () => {
     setOpen(true);
   };
@@ -42,6 +48,16 @@ function Tracker() {
   const handleFormClose = () => {
     setOpen(false);
   };
+
+  const handleFormSubmit = (e) => {
+    const ans = {
+      name: goalNameInput,
+      cat: goalCatagoryInput,
+      desc: goalDescInput
+    }
+
+    console.log(ans)
+  }
 
 
   const CATAGORIES = ['Chores','Exercise','Education','Work']
@@ -52,7 +68,7 @@ function Tracker() {
         {goals.map((goal, index) => (
           <Grid item>
             <Goal
-              key={(index += 1)}
+              key={(index + 1)}
               handleDelete={handleDelete}
               handleUpdate={handleUpdate}
               goalName={goal.goalName}
@@ -72,7 +88,7 @@ function Tracker() {
       </Fab>
 
       <Dialog open={open} onClose={handleFormClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Add Goal</DialogTitle>
         <DialogContent>
           <DialogContentText>
             To add a goal to this website, please enter the details for it here.
@@ -86,6 +102,7 @@ function Tracker() {
             type="text"
             fullWidth
             variant="standard"
+            onChange={(e) => setGoalNameInput(e.target.value)}
           />
 
           <FormControl fullWidth>
@@ -97,9 +114,10 @@ function Tracker() {
                 name: "age",
                 id: "uncontrolled-native",
               }}
+              onChange={(e) => setGoalCatagoryInput(e.target.value)}
             >
 
-            {CATAGORIES.map((cat) => <option value={{cat}}>{cat}</option>)}
+            {CATAGORIES.map((cat) => <option value={cat}>{cat}</option>)}
             </NativeSelect>
           </FormControl>
 
@@ -111,11 +129,12 @@ function Tracker() {
             type="text"
             fullWidth
             variant="standard"
+            onChange={(e) => setGoalDescInput(e.target.value)}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleFormClose}>Cancel</Button>
-          <Button onClick={handleFormClose}>Subscribe</Button>
+          <Button onClick={handleFormSubmit}>Subscribe</Button>
         </DialogActions>
       </Dialog>
     </Container>
