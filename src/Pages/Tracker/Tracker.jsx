@@ -1,6 +1,7 @@
 import {
   Grid,
   Container,
+  Fab,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -14,6 +15,8 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Goal from "./components/Goal";
+
+import FirestoreProvider from '../../firebase.js'
 import Action from "./components/Action";
 
 
