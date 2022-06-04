@@ -13,7 +13,7 @@ import {
   InputLabel,
   NativeSelect,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useImperativeHandle, useRef, useState } from "react";
 import Goal from "./components/Goal";
 
 import FirestoreProvider from '../../firebase.js'
@@ -29,6 +29,9 @@ function Tracker() {
   const [goalCatagoryInput, setGoalCatagoryInput] = useState();
   const [goalDescInput, setGoalDescInput] = useState();
 
+  const [goalNameEdit, setGoalNameEdit] = useState();
+
+
   const handleFormSubmit = async () => {
     const ans = {
       name: goalNameInput,
@@ -36,14 +39,22 @@ function Tracker() {
       desc: goalDescInput
     }
 
+    console.log(ans)
+
     try {
      await FirestoreProvider.store(ans)
-     console.log('file uploaded succesfully')
      handleFormClose()
+     console.log('file uploaded succesfully')
     } catch (error) {
       console.log('file uploaded succesfully', error)
     }
   }
+
+
+  const handleFormUpdate = () => {
+    console.log('update')
+  }
+
 
   useEffect(() => {
     const goalres = getGoals()
@@ -61,8 +72,14 @@ function Tracker() {
     }
   };
 
-  const handleUpdate = () => {
-    console.log("update");
+  const handleUpdate = async (id) => {
+    const data = await (await FirestoreProvider.get(id)).data()
+    setGoalNameEdit({
+      name: data.name,
+      cat: data.cat,
+      desc: data.desc
+    })
+    setOpen(true)
   };
 
 
@@ -73,6 +90,7 @@ function Tracker() {
 
   const handleFormClose = () => {
     setOpen(false);
+    setGoalNameEdit('')
   };
 
 
@@ -83,14 +101,15 @@ async function getGoals() {
   }
 
   const CATAGORIES = ['Chores','Exercise','Education','Work']
+  const editGoalMsg = 'To edit a goal already in the database of this website, please enter the new details for it here. \n The page should reload and your updated goal will be displayed on the main page.'
+  const addGoalMsg = 'To add a goal to this website, please enter the details for it here. \n The page should reload and your new goal will be displayed on the main page.'
 
   return (
     <Container maxWidth="xl">
       <Grid container spacing={4}>
         {goals.map((goal) => (
-          <Grid item>
+          <Grid key={goal.id} item>
             <Goal
-              key={goal.id}
               handleDelete={() => handleDelete(goal.id)}
               handleUpdate={() => handleUpdate(goal.id)}
               goalName={goal.name}
@@ -104,11 +123,11 @@ async function getGoals() {
      <Action handleForm={handleForm} />
 
       <Dialog open={open} onClose={handleFormClose}>
-        <DialogTitle>Add Goal</DialogTitle>
+        <DialogTitle>{ goalNameEdit ? "Edit Goal" : "Add Goal" }</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To add a goal to this website, please enter the details for it here.
-            The page should reload and your new goal will be displayed on the main page.
+          { goalNameEdit ? editGoalMsg : addGoalMsg }
+            
           </DialogContentText>
           <TextField
             autoFocus
@@ -119,6 +138,7 @@ async function getGoals() {
             fullWidth
             variant="standard"
             onChange={(e) => setGoalNameInput(e.target.value)}
+            defaultValue={ goalNameEdit ? goalNameEdit.name : ''}
           />
 
           <FormControl fullWidth>
@@ -127,10 +147,11 @@ async function getGoals() {
             </InputLabel>
             <NativeSelect
               inputProps={{
-                name: "age",
+                name: "catagory",
                 id: "uncontrolled-native",
               }}
               onChange={(e) => setGoalCatagoryInput(e.target.value)}
+              defaultValue={ goalNameEdit ? goalNameEdit.cat : ''}
             >
 
             {CATAGORIES.map((cat) => <option value={cat}>{cat}</option>)}
@@ -146,11 +167,12 @@ async function getGoals() {
             fullWidth
             variant="standard"
             onChange={(e) => setGoalDescInput(e.target.value)}
+            defaultValue={ goalNameEdit ? goalNameEdit.desc : ''}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleFormClose}>Cancel</Button>
-          <Button onClick={handleFormSubmit}>Subscribe</Button>
+          <Button onClick={goalNameEdit ? handleFormUpdate : handleFormSubmit}>{ goalNameEdit ? "Update" : "Upload"}</Button>
         </DialogActions>
       </Dialog>
     </Container>
