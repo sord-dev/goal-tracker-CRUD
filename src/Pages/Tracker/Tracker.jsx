@@ -1,7 +1,6 @@
 import {
   Grid,
   Container,
-  Fab,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -13,7 +12,7 @@ import {
   InputLabel,
   NativeSelect,
 } from "@mui/material";
-import React, { useEffect, useImperativeHandle, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Goal from "./components/Goal";
 
 import FirestoreProvider from '../../firebase.js'
@@ -53,7 +52,7 @@ function Tracker() {
 
 // handle update feature 
 
-  const handleFormUpdate = () => {
+  const handleFormUpdate = async () => {
     const id = goalNameEdit.id;
     const update = {
       name: goalNameInput ?  goalNameInput : goalNameEdit.name,
@@ -76,7 +75,7 @@ function Tracker() {
     const goalres = getGoals()
     goalres.then((doc) => setGoals(doc.docs.map(
       (goal) => ({...goal.data(), id: goal.id})
-    )))
+    ))).catch((err) => console.error(err))
   }, [goals]);
 
   const handleDelete = async (id) => {
