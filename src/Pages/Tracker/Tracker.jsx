@@ -46,13 +46,29 @@ function Tracker() {
      handleFormClose()
      console.log('file uploaded succesfully')
     } catch (error) {
-      console.log('file uploaded succesfully', error)
+      console.log('there was an error, ', error.code)
     }
   }
 
 
+// handle update feature 
+
   const handleFormUpdate = () => {
-    console.log('update')
+    const id = goalNameEdit.id;
+    const update = {
+      name: goalNameInput ?  goalNameInput : goalNameEdit.name,
+      cat: goalCatagoryInput ? goalCatagoryInput : goalNameEdit.cat,
+      desc: goalDescInput ? goalDescInput : goalNameEdit.desc
+    }
+
+    try {
+      await FirestoreProvider.update(id, update)
+      handleFormClose()
+      console.log('file updated succesfully')
+    } catch (error) {
+      console.log('there was an error, ', error.code)
+      
+    }
   }
 
 
@@ -75,6 +91,7 @@ function Tracker() {
   const handleUpdate = async (id) => {
     const data = await (await FirestoreProvider.get(id)).data()
     setGoalNameEdit({
+      id,
       name: data.name,
       cat: data.cat,
       desc: data.desc
@@ -172,7 +189,7 @@ async function getGoals() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleFormClose}>Cancel</Button>
-          <Button onClick={goalNameEdit ? handleFormUpdate : handleFormSubmit}>{ goalNameEdit ? "Update" : "Upload"}</Button>
+          <Button onClick={goalNameEdit ? (id) => handleFormUpdate(id) : handleFormSubmit}>{ goalNameEdit ? "Update" : "Upload"}</Button>
         </DialogActions>
       </Dialog>
     </Container>
