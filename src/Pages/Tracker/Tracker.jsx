@@ -60,12 +60,14 @@ function Tracker() {
       desc: goalDescInput ? goalDescInput : goalNameEdit.desc
     }
 
+    console.log(update)
+
     try {
       await FirestoreProvider.update(id, update)
       handleFormClose()
       console.log('file updated succesfully')
     } catch (error) {
-      console.log('there was an error, ', error.code)
+      console.log('there was an error, ', error)
       
     }
   }
