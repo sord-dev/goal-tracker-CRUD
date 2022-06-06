@@ -44,9 +44,9 @@ Firebase is an extremely convienient SDK. It allows developers to easily access 
     $ npm install 
     ```
     
-2.  [Create a Firebase Project](https://console.firebase.google.com/)  in the Firebase console and create a Firestore database. **make sure to edit the permissions**
+3.  [Create a Firebase Project](https://console.firebase.google.com/)  in the Firebase console and create a Firestore database. **make sure to edit the permissions**
     
-3.  Connect and configure Firebase to your web app using the `firebase.config.js` file, it will look something like this.
+4.  Connect and configure Firebase to your web app using the `firebase.config.js` file, it will look something like this.
 
 ```
 ## Configure your Firebase here
@@ -60,4 +60,9 @@ Firebase is an extremely convienient SDK. It allows developers to easily access 
 }
 ```
 
-5. Go back to the project, open your prefered console and type `npm run dev` and your project should run! c:
+5. Go back to the project, open your prefered console and type this in your console to run the development server.
+    ```bash
+    $ npm run dev 
+    ```
+
+Your project should run now! c:
