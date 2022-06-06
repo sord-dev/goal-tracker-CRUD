@@ -61,8 +61,8 @@ Firebase is an extremely convienient SDK. It allows developers to easily access 
 ```
 
 5. Go back to the project, open your prefered console and type this in your console to run the development server.
-    ```bash
-    $ npm run dev 
-    ```
+ ```bash
+ $ npm run dev 
+ ```
 
 Your project should run now! c:
