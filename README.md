@@ -5,7 +5,7 @@
 I was motivated to make a goal storage app since I felt it would be convinent to have my goals all in one place.
 
 ## Architecture
-These are the technologies I used to create this web app.
+These are what I used to create this web app.
 
  - React
  - Firebase
@@ -59,7 +59,7 @@ const firebaseConfig = {
 
 5. Go back to the project, open your prefered console and type this in your console to run the development server.
  ```bash
- $ npm run dev 
+ $ npm run dev
  ```
 
 Your project should run now! c:
