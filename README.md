@@ -34,15 +34,15 @@ Firebase is an extremely convienient SDK. It allows developers to easily access 
 
 1.  To get the sample code from GitHub, use the  `git clone`  command to get a local copy of the remote repository. To clone the sample code, run the following command:
     
-    ```bash
-    $ git clone [https://github.com/sord-dev/goal-tracker-CRUD.git]
-    ```
+   ```bash
+   $ git clone [https://github.com/sord-dev/goal-tracker-CRUD.git]
+   ```
     
 2. Install dependencies
 
-    ```bash
-    $ npm install 
-    ```
+   ```bash
+   $ npm install 
+   ```
     
 3.  [Create a Firebase Project](https://console.firebase.google.com/)  in the Firebase console and create a Firestore database. **make sure to edit the permissions**
     
@@ -50,13 +50,13 @@ Firebase is an extremely convienient SDK. It allows developers to easily access 
 
 ```
 ## Configure your Firebase here
-// const firebaseConfig = {
-// apiKey: [apiKey here],
-// authDomain: [authDomain here],
-// projectId: [projectId here],
-// storageBucket: [storageBucket here],
-// messagingSenderId: [messagingSenderId here],
-// appId: [appId here],
+const firebaseConfig = {
+ apiKey: [apiKey here],
+ authDomain: [authDomain here],
+ projectId: [projectId here],
+ storageBucket: [storageBucket here],
+ messagingSenderId: [messagingSenderId here],
+ appId: [appId here],
 }
 ```
 
