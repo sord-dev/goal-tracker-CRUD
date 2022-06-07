@@ -1,11 +1,15 @@
 import { Info } from '@mui/icons-material'
 import { Avatar, Container, Typography } from '@mui/material'
 import React from 'react'
+import NavBar from '../Tracker/components/NavBar'
 
 function About() {
   const pStyles =  {opacity: '.8', fontSize: '1.1em'}
   return (
-    <Container align='center' sx={{marginTop: '95px'}}>
+    <>
+    <NavBar />
+
+    <Container align='center' sx={{marginTop: '120px'}}>
         <Avatar sx={{ bgcolor: "#42a5f5" }}><Info/></Avatar>
 
         <Typography variant='h1' className='about-title'  sx={{marginTop: '5px', fontWeight: '500'}} gutterBottom>About</Typography>
@@ -17,6 +21,8 @@ function About() {
 
 
     </Container>
+
+    </>
   )
 }
 
