@@ -23,10 +23,7 @@ These are the technologies I used to create this web app.
 
 ## Lessons Learned
 
-This was my first CRUD application so I learnt a lot from the creation of this. 
-
 Firebase is an extremely convienient SDK. It allows developers to easily access databases, authentication, storage, hosting and more from one website. While this may be the case I ran into issues with the daily limit on requests and I believe in order to make a production ready application, it's much better to create this with some other database, for example MongoDB.
-
 
 ## Setup
 
