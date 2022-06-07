@@ -15,7 +15,7 @@ import {
 import React, { useEffect, useState } from "react";
 import Goal from "./components/Goal";
 
-import FirestoreProvider from "../../firebase";
+import FirestoreProvider from "../../firebase.config";
 import Action from "./components/Action";
 
 function Tracker() {
