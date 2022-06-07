@@ -1,6 +1,15 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, addDoc, deleteDoc, updateDoc, doc, getDoc } from "firebase/firestore/lite";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  updateDoc,
+  doc,
+  getDoc,
+} from "firebase/firestore/lite";
 
 // Enter your firebase details here!
 // const firebaseConfig = {
@@ -18,33 +27,29 @@ const db = getFirestore(app);
 
 const goalCollection = collection(db, "goals");
 
-
 class FirestoreProvider {
+  getAll = () => {
+    return getDocs(goalCollection);
+  };
 
-    getAll = () => {
-      return getDocs(goalCollection)
-    }
-
-    get = (id) => {
-      const goalDoc = doc(db, 'goals', id)
-      return getDoc(goalDoc)
-    }
+  get = (id) => {
+    const goalDoc = doc(db, "goals", id);
+    return getDoc(goalDoc);
+  };
 
   store = (item) => {
     return addDoc(goalCollection, item);
   };
 
   del = (id) => {
-    const goalDoc = doc(db, 'goals', id)
+    const goalDoc = doc(db, "goals", id);
     return deleteDoc(goalDoc);
   };
 
   update = (id, data) => {
-    const goalDoc = doc(db, 'goals', id)
+    const goalDoc = doc(db, "goals", id);
     return updateDoc(goalDoc, data);
   };
-
-  
 }
 
-export default new FirestoreProvider()
+export default new FirestoreProvider();
