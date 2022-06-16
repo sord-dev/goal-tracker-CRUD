@@ -62,4 +62,14 @@ const firebaseConfig = {
  $ npm run dev 
  ```
 
+<<<<<<< HEAD
 Your project should run now! c:
+=======
+## Screenshots
+
+[Menu screenshot](/screenshots/Screenshot_1.jpg?raw=true "Menu")
+
+[Add goal modal screenshot](/screenshots/Screenshot_2.jpg?raw=true "Add Goal Form")
+
+[Edit goal modal screenshot](/screenshots/Screenshot_3.jpg?raw=true "Edit Goal Form")
+>>>>>>> working
